@@ -3,16 +3,19 @@ package jsonep
 import (
 	"encoding/json"
 	"net/http"
+	"reflect"
 )
 
 func Decorate(fn func(interface{}) interface{}, param interface{}) http.HandlerFunc {
+	t := reflect.TypeOf(param).Elem()
 	return func(rw http.ResponseWriter, req *http.Request) {
-		if err := read(req, &param); err != nil {
+		p := reflect.New(t).Interface()
+		if err := read(req, &p); err != nil {
 			http.Error(rw, err.Error(), http.StatusInternalServerError)
 			return
 		}
 
-		result := fn(param)
+		result := fn(p)
 
 		if err := write(rw, result); err != nil {
 			http.Error(rw, err.Error(), http.StatusInternalServerError)
