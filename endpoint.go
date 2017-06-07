@@ -1,4 +1,4 @@
-package jsonep
+package json
 
 import (
 	"encoding/json"
