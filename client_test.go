@@ -6,7 +6,6 @@ import (
 	"net/http/httptest"
 	"reflect"
 	"testing"
-	"time"
 )
 
 func TestPost0(t *testing.T) {
@@ -91,15 +90,17 @@ func TestPost4(t *testing.T) {
 func TestPost5(t *testing.T) {
 	type St struct {
 		Testkey0 string
-		Testkey1 int64
-		Testkey2 uint64
-		Testkey3 time.Time
+		// Testkey1 int64
+		// Testkey2 uint64
+		// Testkey3 time.Time
+		// Testkey4 float64
 	}
 	resp := St{
 		"test_value",
-		int64(-123),
-		uint64(123),
-		time.Now(),
+		// int64(-123),
+		// uint64(123),
+		// time.Now(),
+		// float64(123.321),
 	}
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		jsonResp, _ := json.Marshal(resp)
