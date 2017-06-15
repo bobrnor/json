@@ -23,7 +23,6 @@ func TestPost1(t *testing.T) {
 	if err == nil {
 		t.Errorf("bad data => should produce error")
 	}
-	t.Log(err.Error())
 }
 
 func TestPost2(t *testing.T) {
@@ -32,7 +31,6 @@ func TestPost2(t *testing.T) {
 	if err == nil {
 		t.Errorf("bad url => should produce error")
 	}
-	t.Log(err.Error())
 }
 
 func TestPost3(t *testing.T) {
